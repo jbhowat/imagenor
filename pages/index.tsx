@@ -8,15 +8,35 @@ import { TextField } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 
 
+
 const Home: NextPage = () => {
+	// setting up state
   const [loading, setLoading] = useState<boolean>(false);
 	const [promptInput, setPrompt] = useState<string>('');
+	const [result, setResult] = useState();
 
-	const onSubmit = (e : React.FormEvent<HTMLFormElement>) => {
+	// form submission handler
+	async function onSubmit(e : React.FormEvent<HTMLFormElement>) {
+		// start loading animation
+		setLoading(true);
 		e.preventDefault();
-		console.log(promptInput);
+
+		// send the prompt to our backend
+		const response = await fetch('api/dalle', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({ prompt: promptInput })
+		});
+		const data = await response.json();
+		setResult(data.image_url);
+		setLoading(false);
 		setPrompt('');
+		console.log(data.image_url)
 	}
+
+
 	return (
     <Container maxWidth='lg'>
       <Box
