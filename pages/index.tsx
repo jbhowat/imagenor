@@ -1,20 +1,30 @@
-import Head from 'next/head'
-import { Inter } from '@next/font/google'
-import styles from '../styles/Home.module.css'
+import type { NextPage } from 'next';
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 
-const inter = Inter({ subsets: ['latin'] })
-
-export default function Home() {
+const Home: NextPage = () => {
   return (
-    <>
-      <Head>
-        <title>Imagenor</title>
-        <meta name="description" content="Daily AI Image Create Contests" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <main>
-      </main>
-    </>
-  )
-}
+    <Container maxWidth='lg'>
+      <Box
+        sx={{
+          my: 5,
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <Typography component='h1' color='primary'>
+          Material UI v5 with Next.js in TypeScript
+        </Typography>
+        <Typography component='h2' color='secondary'>
+          Boilerplate for building faster.
+        </Typography>
+      </Box>
+    </Container>
+  );
+};
+
+export default Home;
+
