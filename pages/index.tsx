@@ -1,28 +1,72 @@
+import * as React from 'react';
+import { useState } from 'react';
 import type { NextPage } from 'next';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import { TextField } from '@mui/material';
+import { LoadingButton } from '@mui/lab';
+
+import ImageChooser from '../components/imageChooser';
+
+
 
 const Home: NextPage = () => {
-  return (
-    <Container maxWidth='lg'>
-      <Box
-        sx={{
-          my: 5,
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <Typography component='h1' color='primary'>
-          Material UI v5 with Next.js in TypeScript
-        </Typography>
-        <Typography component='h2' color='secondary'>
-          Boilerplate for building faster.
-        </Typography>
-      </Box>
-    </Container>
+	// setting up state
+  const [loading, setLoading] = useState<boolean>(false);
+	const [promptInput, setPrompt] = useState<string>('');
+	const [result, setResult] = useState();
+
+	// form submission handler
+	async function onSubmit(e : React.FormEvent<HTMLFormElement>) {
+		// start loading animation
+		setLoading(true);
+		e.preventDefault();
+
+		// send the prompt to our backend
+		const response = await fetch('api/dalle', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({ prompt: promptInput })
+		});
+		const data = await response.json();
+		setResult(data.image_url);
+		setLoading(false);
+		setPrompt('');
+		console.log(data.image_url)
+	}
+
+
+	return (
+		<>
+			<Container maxWidth='lg'>
+				<Box
+					sx={{
+						my: 5,
+						display: 'flex',
+						flexDirection: 'column',
+						justifyContent: 'center',
+						alignItems: 'center',
+					}}
+				>
+					<Typography component='h1' color='primary'>
+						Material UI v5 with Next.js in TypeScript
+					</Typography>
+					<Typography component='h2' color='secondary'>
+						Boilerplate for building faster.
+					</Typography>
+				</Box>
+				<Box component="form" onSubmit={onSubmit}
+					sx={{display: 'grid', gridTemplateColumns: '6fr 1fr', gap: 3, alignItems: 'center'
+					}}>
+					<TextField label="Enter your Dall-E prompt" value={promptInput} onChange={(e) => setPrompt(e.target.value)} />
+					<LoadingButton loading={loading} type="submit" size="large" variant="contained"> Submit </LoadingButton>
+				</Box>
+			</Container>
+			<ImageChooser props={result}/>
+		</>
   );
 };
 
