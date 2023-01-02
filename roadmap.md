@@ -9,7 +9,9 @@
 
 [✅] - Display 4 image options
 
-[⏩] - Sign-Up page / form using email
+[✅] - Sign-Up page / form using email
+
+[⏩] - Login / out functionality and navbar
 
 [ ] - Profile page / change settings and see submissions
 
