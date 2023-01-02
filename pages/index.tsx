@@ -7,6 +7,8 @@ import Box from '@mui/material/Box';
 import { TextField } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 
+import ImageChooser from '../components/imageChooser';
+
 
 
 const Home: NextPage = () => {
@@ -38,28 +40,33 @@ const Home: NextPage = () => {
 
 
 	return (
-    <Container maxWidth='lg'>
-      <Box
-        sx={{
-          my: 5,
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <Typography component='h1' color='primary'>
-          Material UI v5 with Next.js in TypeScript
-        </Typography>
-        <Typography component='h2' color='secondary'>
-          Boilerplate for building faster.
-        </Typography>
-      </Box>
-			<Box component="form" onSubmit={onSubmit}>
-				<TextField label="Enter your Dall-E prompt:" value={promptInput} onChange={(e) => setPrompt(e.target.value)} />
-				<LoadingButton loading={loading} type="submit"> Submit </LoadingButton>
-			</Box>
-    </Container>
+		<>
+			<Container maxWidth='lg'>
+				<Box
+					sx={{
+						my: 5,
+						display: 'flex',
+						flexDirection: 'column',
+						justifyContent: 'center',
+						alignItems: 'center',
+					}}
+				>
+					<Typography component='h1' color='primary'>
+						Material UI v5 with Next.js in TypeScript
+					</Typography>
+					<Typography component='h2' color='secondary'>
+						Boilerplate for building faster.
+					</Typography>
+				</Box>
+				<Box component="form" onSubmit={onSubmit}
+					sx={{display: 'grid', gridTemplateColumns: '6fr 1fr', gap: 3, alignItems: 'center'
+					}}>
+					<TextField label="Enter your Dall-E prompt" value={promptInput} onChange={(e) => setPrompt(e.target.value)} />
+					<LoadingButton loading={loading} type="submit" size="large" variant="contained"> Submit </LoadingButton>
+				</Box>
+			</Container>
+			<ImageChooser props={result}/>
+		</>
   );
 };
 
