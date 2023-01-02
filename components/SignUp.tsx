@@ -7,7 +7,7 @@ import { LoadingButton } from '@mui/lab';
 import Container from '@mui/material/Container';
 import { auth } from '../lib/firebase';
 
-export default function EnterPage(): JSX.Element | null {
+export default function SignUp(): JSX.Element | null {
 	const [username, setUsername] = useState('');
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
