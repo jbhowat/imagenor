@@ -3,6 +3,7 @@ import Grid from '@mui/material/Grid'
 import Container from '@mui/material/Container'
 import Item from '@mui/material/Grid'
 import Image from 'next/image'
+import { ImageList, ImageListItem } from '@mui/material'
 import { useState } from 'react'
 import Link from 'next/link'
 
@@ -19,12 +20,12 @@ export default function ImageChooser({props}: React.PropsWithChildren<{props: an
 
 
 	// handler for when an image is clicked
-	function onClick(e : React.MouseEvent<HTMLDivElement, MouseEvent>) {
+	function onClick(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
 		setSelected(e.currentTarget.id);
 	}
 
 	// handler for when the submit button is clicked
-	function onSubmit(e : React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+	function onSubmit(e: React.FormEvent<HTMLFormElement>) {
 		setSubmitted(true);
 		setImage(selected);
 	}
@@ -36,39 +37,13 @@ export default function ImageChooser({props}: React.PropsWithChildren<{props: an
 		<></>
 	);
 	return (
-			<Container maxWidth='lg'
-				sx={{
-					marginTop: 8,
-					display: 'grid',
-					aliginItems: 'center',
-					minHeight: '30vh',
-					height: '100%',
-					width: '100%',
-					borderRadius: '10px',
-					alignContent: 'center',
-				}}>
-				<Grid container spacing={4} columns={12}>
-					<Grid item xs={12} sm={6}>
-						<Item>
-							<Image src={`${urls[0].url}`} alt='image' width='400' height='400' onClick={(e) => handleClick(e, urls[0].url)} />
-						</Item>
-					</Grid>
-					<Grid item xs={12} sm={6}>
-						<Item>
-							<Image src={`${urls[1].url}`} alt='image' width='400' height='400' onClick={(e) => handleClick(e, urls[1].url)} />
-						</Item>
-					</Grid>
-					<Grid item xs={12} sm={6}>
-						<Item>
-							<Image src={`${urls[2].url}`} alt='image' width='400' height='400' onClick={(e) => handleClick(e, urls[2].url)} />
-						</Item>
-					</Grid>
-					<Grid item xs={12} sm={6}>
-						<Item>
-							<Image src={`${urls[3].url}`} alt='image' width='400' height='400' onClick={(e) => handleClick(e, urls[3].url)} />
-						</Item>
-					</Grid>
-				</Grid>
-			</Container>
+				<ImageList cols={2}>
+					{urls.map((item: { url: string }) => (
+						<ImageListItem key={item.url} >
+							<Image
+								src={`${item.url}`} alt={'AI Generated Image'}/>
+						</ImageListItem>
+					))}
+				</ImageList>
 	)
 }
