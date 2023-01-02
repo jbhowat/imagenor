@@ -7,7 +7,7 @@ import Box from '@mui/material/Box';
 import { TextField } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 
-import ImageChooser from '../components/imageChooser';
+import ImageChooser from '../components/ImageChooser';
 
 
 
