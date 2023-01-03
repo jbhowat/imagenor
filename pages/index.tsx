@@ -8,6 +8,7 @@ import { TextField } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 
 import ImageChooser from '../components/ImageChooser';
+import Navbar from '../components/NavBar';
 
 
 
@@ -41,6 +42,7 @@ const Home: NextPage = () => {
 
 	return (
 		<>
+			<Navbar />
 			<Container maxWidth='lg'>
 				<Box
 					sx={{
