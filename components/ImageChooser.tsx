@@ -4,7 +4,7 @@ import Grid from '@mui/material/Grid'
 import Container from '@mui/material/Container'
 import Item from '@mui/material/Grid'
 import Image from 'next/image'
-import { ImageList, ImageListItem } from '@mui/material'
+import { ImageList, ImageListItem, useMediaQuery } from '@mui/material'
 import { useState } from 'react'
 import Link from 'next/link'
 import { Box } from '@mui/system'
@@ -32,6 +32,9 @@ export default function ImageChooser({props}: React.PropsWithChildren<{props: an
 		setImage(selected);
 	}
 
+	// checking to see if the screen size is small - if it is we want the 4 images in one column, otherwise we want them in two
+	const screenSizeCheck = useMediaQuery('(min-width:600px)');
+
 	if (urls === undefined) return (
 		<></>
 	);
@@ -39,16 +42,27 @@ export default function ImageChooser({props}: React.PropsWithChildren<{props: an
 		<></>
 	);
 	return (
-					<ImageList cols={2} gap={24}>
+				<Container
+					sx={
+						{
+							display: 'flex',
+							justifyContent: 'center',
+						}
+					}
+				>
+					<ImageList cols={ screenSizeCheck ? 2 : 1 } gap={screenSizeCheck ? 10 : 20}
+					>
 						{urls.map((item: { url: string }) => (
 							<ImageListItem key={item.url} 
 								sx={
-									{justifyContent: 'center', 
-									alignItems: 'center', 
-									width: '90%', 
-									height: '90%', 
-									alignContent: 'center', 
-									margin: 'auto'}
+									{
+										justifyContent: 'center', 
+										alignItems: 'center', 
+										width: '80%', 
+										height: '80%', 
+										alignContent: 'center', 
+										margin: '10px',
+									}
 								}>
 								<img
 									src={`${item.url}`} alt={'AI Generated Image'}
@@ -56,5 +70,6 @@ export default function ImageChooser({props}: React.PropsWithChildren<{props: an
 							</ImageListItem>
 						))}
 					</ImageList>
+				</Container>
 	)
 }

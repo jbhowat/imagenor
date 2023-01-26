@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { useContext } from "react";
 import { useRouter } from "next/router";
 import { UserContext } from "../lib/context";
@@ -8,6 +9,7 @@ import Image from "next/image";
 import { Container } from "@mui/material";
 import { Button } from "@mui/material";
 import { Grid } from "@mui/material";
+import { AlignVerticalCenter } from "@mui/icons-material";
 
 export default function Navbar(): JSX.Element {
 	
@@ -20,19 +22,29 @@ export default function Navbar(): JSX.Element {
 		router.reload;
 	}
 	return (
-		<Container>
-			<Grid>
+		<Container
+		sx={
+			{
+				padding: '10px',
+			}
+		}>
 				<Link passHref={true} href="/">
-						<Button> Imagenor </Button>
+						<Button>
+							<img src="/imagenor-bot-tp.png" alt="Home" height='50px' />
+						</Button>
 				</Link>
-        <Button>Sign Out</Button>
-				{/* <Link passHref href={`/${username}`}>
-						<Image alt={user?.displayName} src={user?.photoURL} width="50" height="50" />
-				</Link> */}
-				<Link passHref href="/enter">
-						<Button>Log in</Button>
+				<Link passHref={true} href="/enter">
+						<Button
+							sx={
+								{
+									float: 'right',
+									margin: '10px'
+								}
+							}
+						>
+							Log in
+							</Button>
 				</Link>
-			</Grid>
   	</Container>
 	);
 }

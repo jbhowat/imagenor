@@ -20,6 +20,14 @@ const theme = createTheme({
 				},
 			},
 		},
+		MuiTextField: {
+			styleOverrides: {
+				root: {
+					backgroundColor: '#DCDCDC',
+					borderRadius: '5px',
+				},
+			},
+		},
 	},
 });
 
