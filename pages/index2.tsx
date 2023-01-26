@@ -12,62 +12,62 @@ import Navbar from '../components/NavBar';
 
 
 
-const Home: NextPage = () => {
-	// setting up state
-  const [loading, setLoading] = useState<boolean>(false);
-	const [promptInput, setPrompt] = useState<string>('');
-	const [result, setResult] = useState();
+// const Home: NextPage = () => {
+// 	// setting up state
+//   const [loading, setLoading] = useState<boolean>(false);
+// 	const [promptInput, setPrompt] = useState<string>('');
+// 	const [result, setResult] = useState();
 
-	// form submission handler
-	async function onSubmit(e : React.FormEvent<HTMLFormElement>) {
-		// start loading animation
-		setLoading(true);
-		e.preventDefault();
+// 	// form submission handler
+// 	async function onSubmit(e : React.FormEvent<HTMLFormElement>) {
+// 		// start loading animation
+// 		setLoading(true);
+// 		e.preventDefault();
 
-		// send the prompt to our backend
-		const response = await fetch('api/dalle', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({ prompt: promptInput })
-		});
-		const data = await response.json();
-		setResult(data.image_url);
-		setLoading(false);
-		setPrompt('');
-		console.log(data.image_url)
-	}
+// 		// send the prompt to our backend
+// 		const response = await fetch('api/dalle', {
+// 			method: 'POST',
+// 			headers: {
+// 				'Content-Type': 'application/json'
+// 			},
+// 			body: JSON.stringify({ prompt: promptInput })
+// 		});
+// 		const data = await response.json();
+// 		setResult(data.image_url);
+// 		setLoading(false);
+// 		setPrompt('');
+// 		console.log(data.image_url)
+// 	}
 
 
-	return (
-		<>
-			<Navbar />
-			<Container maxWidth='lg'>
-				<Box
-					sx={{
-						my: 5,
-						display: 'flex',
-						flexDirection: 'column',
-						justifyContent: 'center',
-						alignItems: 'center',
-					}}
-				>
-					<Typography component='h1' color='primary'>
-						Imagenor: Daily AI Image Contest
-					</Typography>
-				</Box>
-				<Box component="form" onSubmit={onSubmit}
-					sx={{display: 'grid', gridTemplateColumns: '6fr 1fr', gap: 3, alignItems: 'center'
-					}}>
-					<TextField label="Enter your Dall-E prompt" value={promptInput} onChange={(e) => setPrompt(e.target.value)} />
-					<LoadingButton loading={loading} type="submit" size="large" variant="contained"> Submit </LoadingButton>
-				</Box>
-			</Container>
-			<ImageChooser props={result}/>
-		</>
-  );
-};
+// 	return (
+// 		<>
+// 			<Navbar />
+// 			<Container maxWidth='lg'>
+// 				<Box
+// 					sx={{
+// 						my: 5,
+// 						display: 'flex',
+// 						flexDirection: 'column',
+// 						justifyContent: 'center',
+// 						alignItems: 'center',
+// 					}}
+// 				>
+// 					<Typography component='h1' color='primary'>
+// 						Imagenor: Daily AI Image Contest
+// 					</Typography>
+// 				</Box>
+// 				<Box component="form" onSubmit={onSubmit}
+// 					sx={{display: 'grid', gridTemplateColumns: '6fr 1fr', gap: 3, alignItems: 'center'
+// 					}}>
+// 					<TextField label="Enter your Dall-E prompt" value={promptInput} onChange={(e) => setPrompt(e.target.value)} />
+// 					<LoadingButton loading={loading} type="submit" size="large" variant="contained"> Submit </LoadingButton>
+// 				</Box>
+// 			</Container>
+// 			<ImageChooser props={result}/>
+// 		</>
+//   );
+// };
 
 
 
