@@ -1,71 +1,39 @@
+/* eslint-disable @next/next/no-img-element */
 import * as React from 'react';
 import { useState } from 'react';
 import type { NextPage } from 'next';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import { TextField } from '@mui/material';
+import { Divider, TextField } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 
-import ImageChooser from '../components/ImageChooser';
-import Navbar from '../components/NavBar';
-
-
+// This is just a basic landing page for the domain while the main site is under development
 
 const Home: NextPage = () => {
-	// setting up state
-  const [loading, setLoading] = useState<boolean>(false);
-	const [promptInput, setPrompt] = useState<string>('');
-	const [result, setResult] = useState();
-
-	// form submission handler
-	async function onSubmit(e : React.FormEvent<HTMLFormElement>) {
-		// start loading animation
-		setLoading(true);
-		e.preventDefault();
-
-		// send the prompt to our backend
-		const response = await fetch('api/dalle', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({ prompt: promptInput })
-		});
-		const data = await response.json();
-		setResult(data.image_url);
-		setLoading(false);
-		setPrompt('');
-		console.log(data.image_url)
-	}
-
 
 	return (
-		<>
-			<Navbar />
-			<Container maxWidth='lg'>
-				<Box
-					sx={{
-						my: 5,
-						display: 'flex',
-						flexDirection: 'column',
-						justifyContent: 'center',
-						alignItems: 'center',
-					}}
-				>
-					<Typography component='h1' color='primary'>
-						Imagenor: Daily AI Image Contest
-					</Typography>
-				</Box>
-				<Box component="form" onSubmit={onSubmit}
-					sx={{display: 'grid', gridTemplateColumns: '6fr 1fr', gap: 3, alignItems: 'center'
-					}}>
-					<TextField label="Enter your Dall-E prompt" value={promptInput} onChange={(e) => setPrompt(e.target.value)} />
-					<LoadingButton loading={loading} type="submit" size="large" variant="contained"> Submit </LoadingButton>
-				</Box>
-			</Container>
-			<ImageChooser props={result}/>
-		</>
+		<Container
+			sx={{
+				
+			}}
+		>
+			<img
+			src="/imagenor-high-resolution-color-logo.png"
+			alt="Imagenor Logo"
+			width="100%"
+			>
+			</img>
+			<Divider light />
+			<Typography component='h1' color='secondary' align='center'>
+				<p>Imagenor is an image contest where contestants use the OpenAI DALL-E2 model to generate images for a given daily theme.</p>
+				Each day a user can submit ONE prompt for Dall-E and will receive four images in return. 
+				<p>Once the user selects an image, it will be added to the gallery for that day, and other users can vote on which image is the best.</p>
+			</Typography>
+			<Typography component='h1' color='secondary' align='center' fontWeight='bold'>
+				<p>Imagenor is currently under development. Please check back soon for updates!</p>
+			</Typography>
+		</Container>
   );
 };
 
