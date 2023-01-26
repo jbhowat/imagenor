@@ -22,9 +22,16 @@ const Home: NextPage = () => {
 			src="/imagenor-high-resolution-color-logo.png"
 			alt="Imagenor Logo"
 			width="100%"
+			height="30%"
+			object-fit="none"
 			>
 			</img>
-			<Divider light />
+			<Divider light 
+				sx={{
+					marginTop: '2rem',
+					marginBottom: '4rem',
+				}}
+			/>
 			<Typography component='h1' color='secondary' align='center'>
 				<p>Imagenor is an image contest where contestants use the OpenAI DALL-E2 model to generate images for a given daily theme.</p>
 				Each day a user can submit ONE prompt for Dall-E and will receive four images in return. 
