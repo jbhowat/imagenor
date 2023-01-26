@@ -28,7 +28,7 @@ const Home: NextPage = () => {
 			<Typography component='h1' color='secondary' align='center'>
 				<p>Imagenor is an image contest where contestants use the OpenAI DALL-E2 model to generate images for a given daily theme.</p>
 				Each day a user can submit ONE prompt for Dall-E and will receive four images in return. 
-				<p>Once the user selects an image, it will be added to the gallery for that day, and other users can vote on which image is the best.</p>
+				<p>Once the user selects an image, it will be added to the gallery for that day, and other users can vote on which image is the best...</p>
 			</Typography>
 			<Typography component='h1' color='secondary' align='center' fontWeight='bold'>
 				<p>Imagenor is currently under development. Please check back soon for updates!</p>
