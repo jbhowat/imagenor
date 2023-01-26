@@ -8,6 +8,7 @@ import { TextField } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 
 import ImageChooser from '../components/ImageChooser';
+import Navbar from '../components/NavBar';
 
 
 
@@ -41,6 +42,7 @@ const Home: NextPage = () => {
 
 	return (
 		<>
+			<Navbar />
 			<Container maxWidth='lg'>
 				<Box
 					sx={{
@@ -52,10 +54,7 @@ const Home: NextPage = () => {
 					}}
 				>
 					<Typography component='h1' color='primary'>
-						Material UI v5 with Next.js in TypeScript
-					</Typography>
-					<Typography component='h2' color='secondary'>
-						Boilerplate for building faster.
+						Imagenor: Daily AI Image Contest
 					</Typography>
 				</Box>
 				<Box component="form" onSubmit={onSubmit}

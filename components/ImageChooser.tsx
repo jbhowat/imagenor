@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import * as React from 'react'
 import Grid from '@mui/material/Grid'
 import Container from '@mui/material/Container'
@@ -6,6 +7,7 @@ import Image from 'next/image'
 import { ImageList, ImageListItem } from '@mui/material'
 import { useState } from 'react'
 import Link from 'next/link'
+import { Box } from '@mui/system'
 
 // Component used to diplay the 4 image choices from a given prompt and select one of them to be submitted
 export default function ImageChooser({props}: React.PropsWithChildren<{props: any}>) {
@@ -37,13 +39,22 @@ export default function ImageChooser({props}: React.PropsWithChildren<{props: an
 		<></>
 	);
 	return (
-				<ImageList cols={2}>
-					{urls.map((item: { url: string }) => (
-						<ImageListItem key={item.url} >
-							<Image
-								src={`${item.url}`} alt={'AI Generated Image'}/>
-						</ImageListItem>
-					))}
-				</ImageList>
+					<ImageList cols={2} gap={24}>
+						{urls.map((item: { url: string }) => (
+							<ImageListItem key={item.url} 
+								sx={
+									{justifyContent: 'center', 
+									alignItems: 'center', 
+									width: '90%', 
+									height: '90%', 
+									alignContent: 'center', 
+									margin: 'auto'}
+								}>
+								<img
+									src={`${item.url}`} alt={'AI Generated Image'}
+								/>
+							</ImageListItem>
+						))}
+					</ImageList>
 	)
 }
