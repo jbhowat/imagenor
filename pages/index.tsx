@@ -57,7 +57,7 @@ const Home: NextPage = () => {
 						<br />{`Today's Contest Theme:`}
 					</Typography>
 					<Typography component='h1' color='primary' fontWeight={'bold'} fontStyle={'italic'} fontSize={'2rem'}>
-						<>{`Under Construction`}</>
+						<>{`Hard at work...`}</>
 					</Typography>
 				</Box>
 				<Box component="form" onSubmit={onSubmit}
