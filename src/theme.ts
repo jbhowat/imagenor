@@ -1,16 +1,26 @@
-
 import { createTheme } from '@mui/material/styles';
-import { green } from '@mui/material/colors';
 
 const theme = createTheme({
   palette: {
+		background: {
+			default: '#282634',
+		},
     primary: {
-      main: green.A700,
+      main: '#ff4057',
     },
     secondary: {
-      main: '#ff6666',
+      main: '#DCDCDC'
     },
-  },
+	},
+	components: {
+		MuiDivider: {
+			styleOverrides: {
+				root: {
+					backgroundColor: '#DCDCDC',
+				},
+			},
+		},
+	},
 });
 
 export default theme;
