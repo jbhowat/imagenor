@@ -26,9 +26,9 @@ export default function Navbar(): JSX.Element {
 						<Button> Imagenor </Button>
 				</Link>
         <Button>Sign Out</Button>
-				<Link passHref href={`/${username}`}>
+				{/* <Link passHref href={`/${username}`}>
 						<Image alt={user?.displayName} src={user?.photoURL} width="50" height="50" />
-				</Link>
+				</Link> */}
 				<Link passHref href="/enter">
 						<Button>Log in</Button>
 				</Link>

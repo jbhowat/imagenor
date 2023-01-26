@@ -54,10 +54,7 @@ const Home: NextPage = () => {
 					}}
 				>
 					<Typography component='h1' color='primary'>
-						Material UI v5 with Next.js in TypeScript
-					</Typography>
-					<Typography component='h2' color='secondary'>
-						Boilerplate for building faster.
+						Imagenor: Daily AI Image Contest
 					</Typography>
 				</Box>
 				<Box component="form" onSubmit={onSubmit}
