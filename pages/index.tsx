@@ -42,7 +42,6 @@ const Home: NextPage = () => {
 
 	return (
 		<>
-			<Navbar />
 			<Container maxWidth='lg'>
 				<Box
 					sx={{

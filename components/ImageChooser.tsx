@@ -1,16 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
 import * as React from 'react'
-import Grid from '@mui/material/Grid'
 import Container from '@mui/material/Container'
-import Item from '@mui/material/Grid'
-import Image from 'next/image'
 import { ImageList, ImageListItem, useMediaQuery } from '@mui/material'
 import { useState } from 'react'
-import Link from 'next/link'
-import { Box } from '@mui/system'
+
 
 // Component used to diplay the 4 image choices from a given prompt and select one of them to be submitted
 export default function ImageChooser({props}: React.PropsWithChildren<{props: any}>) {
+	
 	// setting up state
 	const [selected, setSelected] = useState<string>('');
 	const [submitted, setSubmitted] = useState<boolean>(false);

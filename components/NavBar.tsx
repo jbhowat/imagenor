@@ -1,15 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
 import { useContext } from "react";
-import { useRouter } from "next/router";
 import { UserContext } from "../lib/context";
+import { useRouter } from "next/router";
 import { auth } from "../lib/firebase";
 import { signOut } from "firebase/auth";
 import Link from "next/link";
-import Image from "next/image";
 import { Container } from "@mui/material";
 import { Button } from "@mui/material";
-import { Grid } from "@mui/material";
-import { AlignVerticalCenter } from "@mui/icons-material";
+
 
 export default function Navbar(): JSX.Element {
 	
