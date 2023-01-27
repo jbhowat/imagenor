@@ -1,5 +1,5 @@
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { doc, getDoc, getFirestore, writeBatch } from 'firebase/firestore';
+import { doc, getFirestore, writeBatch } from 'firebase/firestore';
 import React, { useState } from 'react';
 import { TextField } from '@mui/material';
 import { Box } from '@mui/material';
@@ -27,12 +27,17 @@ export default function SignUp(): JSX.Element | null {
 				const data = {
 					username: username,
 					email: email,
-					photoURL: null,
+					avatar: null,
 					dateCreated: Date.now(),
+					displayName: username,
 				};
 				const userDoc = doc(getFirestore(), 'users', uid);
+				const usernameDoc = doc(getFirestore(), 'usernames', username);
+
+
 				const batch = writeBatch(getFirestore());
 				batch.set(userDoc, data);
+				batch.set(usernameDoc, { uid: uid });
 				setLoading(false);
 				return batch.commit().catch((error) => console.error(error));
 			})
