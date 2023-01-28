@@ -70,25 +70,26 @@ export default function SignUp(): JSX.Element | null {
 					maxWidth: '400px',
 					borderRadius: 2,
 					padding: 2,
-					boxShadow: 10,
+					boxShadow: '5px 5px 5px 1px #000000',
+					backgroundColor: '#73648A'
 					}}
 			>
 				<TextField 
-					id='outlined-input'
+					variant="filled"
 					label="Username"
 					type="text"
 					value={username}
 					onChange={(e) => setUsername(e.target.value)} 
 				/>
 				<TextField 
-					id='outlined-email-input'
+					variant="filled"
 					label="Email"
 					type="email"
 					value={email} 
 					onChange={(e) => setEmail(e.target.value)} 
 				/>
 				<TextField
-						id="outlined-password-input"
+						variant="filled"
 						label="Password"
 						type="password"
 						autoComplete="current-password"

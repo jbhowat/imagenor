@@ -27,7 +27,11 @@ export default function Navbar(): JSX.Element {
 			}
 		}>
 				<Link passHref={true} href="/">
-						<Button>
+						<Button
+							sx={{
+								borderRadius: '50%',
+							}}
+						>
 							<img src="/imagenor-bot-tp.png" alt="Home" height='50px' />
 						</Button>
 				</Link>
