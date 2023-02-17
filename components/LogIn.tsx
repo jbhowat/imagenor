@@ -7,6 +7,7 @@ import { LoadingButton } from '@mui/lab';
 import Container from '@mui/material/Container';
 import { auth } from '../lib/firebase';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 export default function LogIn(): JSX.Element | null {
 	const [username, setUsername] = useState('');
@@ -14,6 +15,7 @@ export default function LogIn(): JSX.Element | null {
 	const [password, setPassword] = useState('');
 	const [loading, setLoading] = useState(false);
 
+	const router = useRouter();
 	const loginUser = async (e: React.FormEvent) => {
 		e.preventDefault();
 		setLoading(true);
@@ -23,9 +25,8 @@ export default function LogIn(): JSX.Element | null {
 				if (user.displayName) {
 					setUsername(user.displayName)
 				}
-				console.log(user);
-				console.log(username);
 				setLoading(false);
+				router.push('/')
 				return user;
 			})
 			.catch((error) => {

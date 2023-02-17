@@ -7,6 +7,7 @@ import { LoadingButton } from '@mui/lab';
 import Container from '@mui/material/Container';
 import { auth } from '../lib/firebase';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 export default function SignUp(): JSX.Element | null {
 	const [username, setUsername] = useState('');
@@ -14,13 +15,13 @@ export default function SignUp(): JSX.Element | null {
 	const [password, setPassword] = useState('');
 	const [loading, setLoading] = useState(false);
 
+	const router = useRouter();
 	const createUser = async (e: React.FormEvent) => {
 		e.preventDefault();
 		setLoading(true);
 		createUserWithEmailAndPassword(auth, email, password)
 			.then((userCredential) => {
 				const user = userCredential.user;
-				console.log(user);
 				return user;
 			})
 			.then((user) => {
@@ -39,6 +40,7 @@ export default function SignUp(): JSX.Element | null {
 				batch.set(userDoc, data);
 				batch.set(usernameDoc, { uid: uid });
 				setLoading(false);
+				router.push('/enter');
 				return batch.commit().catch((error) => console.error(error));
 			})
 			.catch((error) => {

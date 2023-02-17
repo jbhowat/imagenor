@@ -12,8 +12,6 @@ import { Button } from "@mui/material";
 export default function Navbar(): JSX.Element {
 	
 	const { user, username } = useContext(UserContext);
-	console.log('user', user);
-	console.log('username', username);
 	
 	return (
 		<Container

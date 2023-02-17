@@ -59,6 +59,7 @@ export default function ImageChooser({props}: React.PropsWithChildren<{props: an
 										height: '80%', 
 										alignContent: 'center', 
 										margin: '10px',
+										boxShadow: '5px 5px 5px 1px #000000',
 									}
 								}>
 								<img
