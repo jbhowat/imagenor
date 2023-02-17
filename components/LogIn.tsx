@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword} from 'firebase/auth';
 import { doc, getFirestore, writeBatch } from 'firebase/firestore';
 import React, { useState } from 'react';
 import { TextField, Typography } from '@mui/material';
@@ -8,38 +8,25 @@ import Container from '@mui/material/Container';
 import { auth } from '../lib/firebase';
 import Link from 'next/link';
 
-export default function SignUp(): JSX.Element | null {
+export default function LogIn(): JSX.Element | null {
 	const [username, setUsername] = useState('');
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [loading, setLoading] = useState(false);
 
-	const createUser = async (e: React.FormEvent) => {
+	const loginUser = async (e: React.FormEvent) => {
 		e.preventDefault();
 		setLoading(true);
-		createUserWithEmailAndPassword(auth, email, password)
+		signInWithEmailAndPassword(auth, email, password)
 			.then((userCredential) => {
 				const user = userCredential.user;
+				if (user.displayName) {
+					setUsername(user.displayName)
+				}
 				console.log(user);
-				return user;
-			})
-			.then((user) => {
-				const uid = user?.uid;
-				const data = {
-					username: username,
-					email: email,
-					avatar: null,
-					dateCreated: Date.now(),
-					displayName: username,
-				};
-				const userDoc = doc(getFirestore(), 'users', uid);
-				const usernameDoc = doc(getFirestore(), 'usernames', username);
-
-				const batch = writeBatch(getFirestore());
-				batch.set(userDoc, data);
-				batch.set(usernameDoc, { uid: uid });
+				console.log(username);
 				setLoading(false);
-				return batch.commit().catch((error) => console.error(error));
+				return user;
 			})
 			.catch((error) => {
 				const errorCode = error.code;
@@ -61,7 +48,7 @@ export default function SignUp(): JSX.Element | null {
 			>
 			<Box
 				component={'form'}
-				onSubmit={createUser}
+				onSubmit={loginUser}
 				sx={{
 					display: 'grid', 
 					gridTemplateColumns: '1fr', 
@@ -79,22 +66,15 @@ export default function SignUp(): JSX.Element | null {
 					textAlign: 'center',
 					fontWeight: 'bold',
 					}}> 
-				Sign Up 
+					Log In
 				</Typography>
 				<Typography variant="body1" component="p"
 				sx={{
 					textAlign: 'center',
 					fontWeight: 'bold',
 					}}>
-				Registration takes less than 5 seconds...
+				Welcome back to Imagenor!
 				</Typography>
-				<TextField 
-					variant="filled"
-					label="Username"
-					type="text"
-					value={username}
-					onChange={(e) => setUsername(e.target.value)} 
-				/>
 				<TextField 
 					variant="filled"
 					label="Email"
@@ -110,13 +90,13 @@ export default function SignUp(): JSX.Element | null {
 						value={password}
 						onChange={(e) => setPassword(e.target.value)}
 				/>
-				<LoadingButton loading={loading} type="submit" size="large" variant="contained"> Create Account </LoadingButton>
-				<Link href="/enter">
+				<LoadingButton loading={loading} type="submit" size="large" variant="contained"> Verify </LoadingButton>
+				<Link href="/signup">
 					<Typography variant="body2" component="p"
 					sx={{
 						textAlign: 'center'
 						}}>
-						Already have an account? Sign in here.
+					Don&apos;t have an account? Sign up here!
 					</Typography>
 				</Link>
 			</Box>

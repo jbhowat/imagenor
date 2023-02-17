@@ -60,7 +60,7 @@ export default function Navbar(): JSX.Element {
 									}
 								}
 							>
-								Log in
+								Log In
 								</Button>
 					</Link>
 				)}
