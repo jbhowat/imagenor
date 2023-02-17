@@ -12,6 +12,8 @@ import { Button } from "@mui/material";
 export default function Navbar(): JSX.Element {
 	
 	const { user, username } = useContext(UserContext);
+	console.log('user', user);
+	console.log('username', username);
 	
 	const router = useRouter();
 
@@ -35,18 +37,51 @@ export default function Navbar(): JSX.Element {
 							<img src="/imagenor-bot-tp.png" alt="Home" height='50px' />
 						</Button>
 				</Link>
-				<Link passHref={true} href="/enter">
-						<Button
-							sx={
-								{
-									float: 'right',
-									margin: '10px'
+				{/* if user is signed in, show sign out button and profile button*/}
+				{username && (
+					<>
+						<Link passHref={true} href="/">
+							<Button
+								sx={
+									{
+										float: 'right',
+										margin: '10px'
+									}
 								}
-							}
-						>
-							Log in
+								onClick={signOutHandler}
+							>
+								Sign out
 							</Button>
-				</Link>
+						</Link>
+						<Link passHref={true} href={`/${username}`}>
+							<Button
+								sx={
+									{
+										float: 'right',
+										margin: '10px'
+									}
+								}
+							>
+								{username}
+							</Button>
+						</Link>
+					</>
+				)}
+				{/* if user is not signed in, show log in in button */}
+				{!username && (
+					<Link passHref={true} href="/enter">
+							<Button
+								sx={
+									{
+										float: 'right',
+										margin: '10px'
+									}
+								}
+							>
+								Log in
+								</Button>
+					</Link>
+				)}
   	</Container>
 	);
 }
