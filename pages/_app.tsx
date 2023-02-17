@@ -8,19 +8,25 @@ import theme from '../src/theme';
 import createEmotionCache from '../src/createEmotionCache';
 import { UserContext } from '../lib/context';
 import NavBar from '../components/NavBar';
+import { useUserData } from '../lib/hooks';
 
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
 
-interface MyAppProps extends AppProps {
-  emotionCache?: EmotionCache;
-}
+	interface MyAppProps extends AppProps {
+		emotionCache?: EmotionCache;
+	}
+
+
 
 export default function MyApp(props: MyAppProps) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
+
+	const userData = useUserData();
+
   return (
-		<UserContext.Provider value={{ user: {}, username: 'james' }}>
+		<UserContext.Provider value={userData}>
 			<CacheProvider value={emotionCache}>
 				<Head>
 					<meta name="viewport" content="initial-scale=1, width=device-width" />
