@@ -6,9 +6,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { TextField } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
-
 import ImageChooser from '../components/ImageChooser';
-import Navbar from '../components/NavBar';
 
 
 

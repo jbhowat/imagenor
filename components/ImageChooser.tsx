@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import * as React from 'react'
 import Container from '@mui/material/Container'
-import { ImageList, ImageListItem, useMediaQuery } from '@mui/material'
+import { ImageList, ImageListItem, Typography, useMediaQuery } from '@mui/material'
 import { useState } from 'react'
 
 
@@ -20,7 +20,8 @@ export default function ImageChooser({props}: React.PropsWithChildren<{props: an
 
 	// handler for when an image is clicked
 	function onClick(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
-		setSelected(e.currentTarget.id);
+		setSelected(e.currentTarget.getAttribute('src')!);
+		console.log(selected)
 	}
 
 	// handler for when the submit button is clicked
@@ -39,6 +40,19 @@ export default function ImageChooser({props}: React.PropsWithChildren<{props: an
 		<></>
 	);
 	return (
+		<>
+			<Container
+			sx={
+				{
+					display: 'flex',
+					justifyContent: 'center',
+					marginTop: '20px',
+				}
+			}>
+				<Typography component='h1' color='primary' fontSize={'xs'}>
+				Choose an image below to submit to the contest:
+				</Typography>
+			</Container>
 				<Container
 					sx={
 						{
@@ -50,7 +64,7 @@ export default function ImageChooser({props}: React.PropsWithChildren<{props: an
 					<ImageList cols={ screenSizeCheck ? 2 : 1 } gap={screenSizeCheck ? 10 : 20}
 					>
 						{urls.map((item: { url: string }) => (
-							<ImageListItem key={item.url} 
+							<ImageListItem key={item.url}
 								sx={
 									{
 										justifyContent: 'center', 
@@ -64,10 +78,12 @@ export default function ImageChooser({props}: React.PropsWithChildren<{props: an
 								}>
 								<img
 									src={`${item.url}`} alt={'AI Generated Image'}
+									onClick={onClick}
 								/>
 							</ImageListItem>
 						))}
 					</ImageList>
 				</Container>
+			</>
 	)
 }
